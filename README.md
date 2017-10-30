@@ -14,7 +14,7 @@ Within this sample scoring application you are able to:
 * display predicted best drug for selected patient
 * click name of drugs to send feedback
 
-![Application screenshot](/doc/app-scr.png)
+![Application screenshot](/doc/scr.png)
 
 
 # Requirements
