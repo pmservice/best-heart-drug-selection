@@ -1,0 +1,35 @@
+{
+  "model-schema": [
+    {"name": "AGE", "type": "integer"},
+    {"name": "SEX", "type": "string"},
+    {"name": "BP", "type": "string"},
+    {"name": "CHOLESTEROL", "type": "string"},
+    {"name": "NA", "type": "decimal(12,6)"},
+    {"name": "K", "type": "decimal(13,6)"}
+  ],
+  "label": "DRUG",
+  "label-values": [
+    {"title": "Drug A", "value": "drugA"},
+    {"title": "Drug B", "value": "drugB"},
+    {"title": "Drug C", "value": "drugC"},
+    {"title": "Drug X (new)", "value": "drugX"},
+    {"title": "Drug Y (new)", "value": "drugY"}
+  ],
+  "model-input": [
+    {"name": "Alice",     "icon": "alice",      "data": [24,"F","HIGH","NORMAL",0.613261,0.064726]},
+    {"name": "Gregory",   "icon": "gregory",    "data": [32,"M","HIGH","NORMAL",0.529750,0.056087]},
+    {"name": "Joanna",    "icon": "joanna",     "data": [44,"F","HIGH","NORMAL",0.898924,0.071023]},
+    {"name": "Alexander", "icon": "alexander",  "data": [65,"M","HIGH","HIGH",0.635551,0.056043]},
+    {"name": "Bill",      "icon": "alexander",  "data": [54,"M","NORMAL","HIGH",0.543355,0.032247]},
+    {"name": "Olivia",    "icon": "alice",      "data": [49,"F","HIGH","NORMAL",0.529750,0.056087]},
+    {"name": "Mark",      "icon": "gregory",    "data": [44,"M","LOW","NORMAL",0.84773,0.025274]},
+    {"name": "Emma",      "icon": "joanna",     "data": [72,"F","NORMAL","NORMAL",0.526226,0.072234]}
+  ],
+  "model-prediction-mapping": {
+    "0": "Drug A",
+    "1": "Drug B",
+    "2": "Drug C",
+    "3": "Drug X",
+    "4": "Drug Y"
+  }
+}

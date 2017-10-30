@@ -1,0 +1,5 @@
+applications:
+- name:    best-drug-selection
+  memory:  256M
+  services:
+  - <ml-service-name>
