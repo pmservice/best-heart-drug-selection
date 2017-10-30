@@ -24,7 +24,8 @@ Within this sample scoring application you are able to:
 
 ### Prepare Bluemix ecosystem
 1. From Bluemix catalog choose [IBM Watson Machine Learning][pa] service. This service will later be binded with a Node.js application created from this sample.
-2. Using the *IBM Watson Machine Learning Dashboard*, add the *Heart Drug Selection* model as described [here](https://console.bluemix.net/docs/services/PredictiveModeling/pm_service_api_spark_learning_system.html). You'll need to setup continuous learning system for published model as described in the documentation.
+2. Using the *IBM Watson Machine Learning Dashboard*, add the *Heart Drug Selection* model, setup continuous learning system for published model as describe here [via API](https://console.bluemix.net/docs/services/PredictiveModeling/pm_service_api_spark_learning_system.html)
+or [via UI](https://console.bluemix.net/docs/services/PredictiveModeling/pm_service_api_spark_learning_system.html)
 
 Also a custom model can also be used; the requirement is that its input schema matches following schema:
 ```json
