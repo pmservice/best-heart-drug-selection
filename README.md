@@ -67,7 +67,7 @@ See [instructions](#binding-services-in-bluemix)
 ### Local deployment
 Running the application locally is useful when you want to test your changes before deploying them to Bluemix. To see how to work with source code, see [Source code changes](#source-code-changes).
 
-When the changes are ready, open a shell, change directory to your cloned repository and execute `npm start` to start the application. The running application is available in a browser at http://localhost:6001 url.
+When the changes are ready, open a shell, change directory to your cloned repository and execute `npm run build && npm start` to start the application. The running application is available in a browser at http://localhost:6001 url.
 
 Application run locally can also use Bluemix *IBM Watson Machine Learning* service, see [instructions](#link-local-application-with-the-bluemix-environment) how to link it.
 
@@ -76,7 +76,7 @@ The repository comes with pre-build app. If you want to rebuild application afte
   * Follow steps listed in [Requirements](#requirements) section
   * Change to directory with downloaded source code or cloned git repo
   * Execute `npm install`
-  * Execute `./node_modules/.bin/webpack`
+  * Execute `npm run build`
 
 
 # IBM Watson Machine Learning service
@@ -94,7 +94,7 @@ As stated in [Requirements](#requirements) section, from Bluemix catalog order a
 1. Open your instance of [IBM Watson Machine Learning][pa].
 2. Go to *Service Credentials* pane and press *View Credentials*. Copy json provided (url, username, password).
 3. Create *./config/local.json* file by copying *./config/local.json.template* file. Edit the *local.json* file and paste obtained pm-20 credentials.
-4. Start your local application. You should be able to interact with the *IBM Watson Machine Learning* service e.g. by listing the deployments.
+4. Start your local application `npm start`. You should be able to interact with the *IBM Watson Machine Learning* service e.g. by listing the deployments.
 
 
 # License
