@@ -53,7 +53,7 @@ class Scoring extends Component {
       'decimal': 'integer'
     };
 
-    function baseFieldType(fieldType) {
+    function baseFieldType (fieldType) {
       fieldType = fieldType.split('(')[0]; // get rid of type size e.g. 'decimal(12,6)'
       if (fieldTypeAliases.hasOwnProperty(fieldType)) {
         fieldType = fieldTypeAliases[fieldType];
@@ -61,16 +61,22 @@ class Scoring extends Component {
       return fieldType;
     }
 
-    function sameFiledTypes(typeA, typeB) {
-      return baseFieldType(typeA) == baseFieldType(typeB);
+    function sameFiledTypes (typeA, typeB) {
+      return baseFieldType(typeA) === baseFieldType(typeB);
     }
 
     this.serverRequest = $.get('/env/deployments', function (result) {
       // validate deployment's model schema
-      result = result.map(d => {
+      result = result.filter((d) => {
+        if (!d.model || !d.model.input_data_schema || !d.model.input_data_schema ||
+          !d.model.input_data_schema.fields || !d.model.runtimeEnvironment || !d.model.runtimeEnvironment.includes('spark')) {
+          return false;
+        }
+        return true;
+      }).map(d => {
         let matches = false;
-        let schema = d.model.input_data_schema.fields.sort(function(a,b) { return a.name - b.name; });
-        let expectedSchema = ctx.expectedSchema.sort(function(a,b) { return a.name - b.name; });
+        let schema = d.model.input_data_schema.fields.sort(function (a, b) { return a.name - b.name; });
+        let expectedSchema = ctx.expectedSchema.sort(function (a, b) { return a.name - b.name; });
         if (schema.length === expectedSchema.length) {
           matches = true;
           for (let i = 0; i < schema.length; i++) {
@@ -278,18 +284,18 @@ class Scoring extends Component {
         );
       });
 
-      feedbackPanel = (<div id="scoringResult" className={styles['scoring-result']} style={{paddingTop: "15px"}}>
+      feedbackPanel = (<div id="scoringResult" className={styles['scoring-result']} style={{paddingTop: '15px'}}>
       {
         !this.state.feedbackResult && !this.state.feedbackLoading ? (
-        <div style={{width: "100%"}}>
+        <div style={{width: '100%'}}>
           <p>We would like to know your opinion which drug is the most suitable for this patient?</p>
           {feedbackButtons}
         </div>) : !this.state.feedbackLoading ?
         (<div style={{display: 'flex', alignItems: 'left'}}>
-          <p style={{paddingLeft: "20px", textAlign: "left"}}>Thank you for your feedback!<br />Your suggestions will improve the future predictions.</p>
+          <p style={{paddingLeft: '20px', textAlign: 'left'}}>Thank you for your feedback!<br />Your suggestions will improve the future predictions.</p>
         </div>) : (<Loading></Loading>)
       }
-      </div>)
+      </div>);
     }
 
     return (

@@ -68,10 +68,8 @@ class Result extends Component {
         <div className={styles['scoring-result-left']}>
           <h1>{best.value}% {best.drug}</h1>
           <p className={styles['scoring-paragraph']}>Based
-          on your selection of <span className={classNames(styles['bold'], 'markWithColor')}>{this.props.deployment}</span> and
-          your patient, it is predicted
-          that <span className={classNames(styles['bold'], 'markWithColor')}>{best.drug}</span> is going
-          to help <span className={classNames(styles['bold'], 'markWithColor')}>{this.props.id}</span> in {best.value}%.
+          on your selection, <span className={classNames(styles['bold'], 'markWithColor')}>{best.drug}</span> is recommended for
+          <span className={classNames(styles['bold'], 'markWithColor')}> {this.props.id}</span> with probability of {best.value}%.
           </p>
         </div>
 

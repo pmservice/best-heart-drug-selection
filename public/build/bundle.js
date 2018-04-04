@@ -40096,25 +40096,20 @@ var Result = function (_Component) {
           _react2.default.createElement(
             'p',
             { className: _style2.default['scoring-paragraph'] },
-            'Based on your selection of ',
-            _react2.default.createElement(
-              'span',
-              { className: (0, _classnames2.default)(_style2.default['bold'], 'markWithColor') },
-              this.props.deployment
-            ),
-            ' and your patient, it is predicted that ',
+            'Based on your selection, ',
             _react2.default.createElement(
               'span',
               { className: (0, _classnames2.default)(_style2.default['bold'], 'markWithColor') },
               best.drug
             ),
-            ' is going to help ',
+            ' is recommended for',
             _react2.default.createElement(
               'span',
               { className: (0, _classnames2.default)(_style2.default['bold'], 'markWithColor') },
+              ' ',
               this.props.id
             ),
-            ' in ',
+            ' with probability of ',
             best.value,
             '%.'
           )
@@ -40245,12 +40240,17 @@ var Scoring = function (_Component) {
       }
 
       function sameFiledTypes(typeA, typeB) {
-        return baseFieldType(typeA) == baseFieldType(typeB);
+        return baseFieldType(typeA) === baseFieldType(typeB);
       }
 
       this.serverRequest = $.get('/env/deployments', function (result) {
         // validate deployment's model schema
-        result = result.map(function (d) {
+        result = result.filter(function (d) {
+          if (!d.model || !d.model.input_data_schema || !d.model.input_data_schema || !d.model.input_data_schema.fields || !d.model.runtimeEnvironment || !d.model.runtimeEnvironment.includes('spark')) {
+            return false;
+          }
+          return true;
+        }).map(function (d) {
           var matches = false;
           var schema = d.model.input_data_schema.fields.sort(function (a, b) {
             return a.name - b.name;
@@ -40489,10 +40489,10 @@ var Scoring = function (_Component) {
 
         feedbackPanel = _react2.default.createElement(
           'div',
-          { id: 'scoringResult', className: _style2.default['scoring-result'], style: { paddingTop: "15px" } },
+          { id: 'scoringResult', className: _style2.default['scoring-result'], style: { paddingTop: '15px' } },
           !this.state.feedbackResult && !this.state.feedbackLoading ? _react2.default.createElement(
             'div',
-            { style: { width: "100%" } },
+            { style: { width: '100%' } },
             _react2.default.createElement(
               'p',
               null,
@@ -40504,7 +40504,7 @@ var Scoring = function (_Component) {
             { style: { display: 'flex', alignItems: 'left' } },
             _react2.default.createElement(
               'p',
-              { style: { paddingLeft: "20px", textAlign: "left" } },
+              { style: { paddingLeft: '20px', textAlign: 'left' } },
               'Thank you for your feedback!',
               _react2.default.createElement('br', null),
               'Your suggestions will improve the future predictions.'
