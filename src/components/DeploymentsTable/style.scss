@@ -32,33 +32,28 @@
 
 .name{
   @extend .cell;
-  width: 26%;
+  width: 27%;
   padding-left: 15px;
 }
 
 .status{
   @extend .cell;
-  width: 8%;
+  width: 14%;
 }
 
 .date-created{
   @extend .cell;
-  width: 15%;
+  width: 17%;
 }
 
 .model-name{
   @extend .cell;
-  width: 26%;
-}
-
-.model-author{
-  @extend .cell;
-  width: 13%;
+  width: 27%;
 }
 
 .model-runtime{
   @extend .cell;
-  width: 12%;
+  width: 13%;
 }
 
 .table-row {

@@ -39495,14 +39495,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Copyright 2017 IBM Corp.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Licensed under the Apache License, Version 2.0 (the 'License');
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   you may not use this file except in compliance with the License.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   You may obtain a copy of the License at
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       http://www.apache.org/licenses/LICENSE-2.0
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Unless required by applicable law or agreed to in writing, software
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  distributed under the License is distributed on an 'AS IS' BASIS,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   See the License for the specific language governing permissions and
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   limitations under the License.
@@ -39530,6 +39530,14 @@ var DeploymentsTable = function (_Component) {
     var _this = _possibleConstructorReturn(this, (DeploymentsTable.__proto__ || Object.getPrototypeOf(DeploymentsTable)).call(this, props));
 
     _this.handleSelect = _this.handleSelect.bind(_this);
+    _this.statusKeys = {
+      'DEPLOY_IN_PROGRESS': 'Deployment In Progress',
+      'DEPLOY_SUCCESS': 'Deployment Successful',
+      'DEPLOY_FAILURE': 'Deployment Failed',
+      'UPDATE_IN_PROGRESS': 'Update In Progress',
+      'UPDATE_SUCCESS': 'Update Successful',
+      'UPDATE_FAILURE': 'Update Failed'
+    };
     return _this;
   }
 
@@ -39546,6 +39554,8 @@ var DeploymentsTable = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var ctx = this;
       return _react2.default.createElement(
         'div',
@@ -39597,15 +39607,6 @@ var DeploymentsTable = function (_Component) {
               ),
               _react2.default.createElement(
                 'th',
-                { className: _style2.default['model-author'] },
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  'MODEL AUTHOR'
-                )
-              ),
-              _react2.default.createElement(
-                'th',
                 { className: _style2.default['model-runtime'] },
                 _react2.default.createElement(
                   'span',
@@ -39628,7 +39629,7 @@ var DeploymentsTable = function (_Component) {
                   value: JSON.stringify(entry),
                   onClick: ctx.handleSelect,
                   className: (0, _classnames2.default)(entry.disabled ? [_style2.default.disableRow] : _style2.default.enableRow, { 'markWithColorBorder': ctx.props.selected === entry.name }),
-                  title: entry.disabled ? "Data schema of this model is incompatible with data schema expected by this application." : '' },
+                  title: entry.disabled ? 'Data schema of this model is incompatible with data schema expected by this application.' : '' },
                 _react2.default.createElement(
                   'td',
                   { className: (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, _style2.default.enabledRowName, !entry.disabled), _defineProperty(_classNames, 'markWithColor', ctx.props.selected === entry.name), _classNames), _style2.default.name) },
@@ -39637,7 +39638,7 @@ var DeploymentsTable = function (_Component) {
                 _react2.default.createElement(
                   'td',
                   { className: _style2.default['status'] },
-                  entry.status
+                  _this2.statusKeys[entry.status]
                 ),
                 _react2.default.createElement(
                   'td',
@@ -39648,11 +39649,6 @@ var DeploymentsTable = function (_Component) {
                   'td',
                   { className: _style2.default['model-name'] },
                   entry.model.name
-                ),
-                _react2.default.createElement(
-                  'td',
-                  { className: _style2.default['model-author'] },
-                  entry.model.author
                 ),
                 _react2.default.createElement(
                   'td',
@@ -42205,7 +42201,7 @@ exports = module.exports = __webpack_require__(39)();
 
 
 // module
-exports.push([module.i, ".style_deployment-table__1yDju {\n  width: 100%;\n  min-width: 880px;\n  max-height: 400px;\n  background-color: #ffffff;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  text-align: center; }\n\n.style_table-header__3hSWm {\n  width: 100%;\n  height: 50px;\n  border-bottom: 2px solid #e0e0e0;\n  background-color: #ffffff;\n  box-sizing: border-box;\n  text-align: left; }\n\n.style_table-header__3hSWm span {\n  color: #252f6a;\n  font-size: 10px;\n  font-weight: 500; }\n\n.style_cell__222Qx, .style_name__1EwBE, .style_enabledRowName__GqEsb, .style_status__VozdF, .style_date-created__3Slmr, .style_model-name__3hTKu, .style_model-author__2aBaE, .style_model-runtime__3DXae {\n  text-align: left;\n  height: 100%;\n  padding-left: 3px;\n  padding-right: 3px;\n  line-height: 50px; }\n\n.style_name__1EwBE, .style_enabledRowName__GqEsb {\n  width: 26%;\n  padding-left: 15px; }\n\n.style_status__VozdF {\n  width: 8%; }\n\n.style_date-created__3Slmr {\n  width: 15%; }\n\n.style_model-name__3hTKu {\n  width: 26%; }\n\n.style_model-author__2aBaE {\n  width: 13%; }\n\n.style_model-runtime__3DXae {\n  width: 12%; }\n\n.style_table-row__3xMZK, .style_enableRow__3T00O, .style_disableRow__Vji9G {\n  box-sizing: border-box;\n  border-bottom: 1px solid #e0e0e0;\n  width: 100%;\n  height: 50px;\n  text-align: left;\n  color: #777677;\n  font-size: 12px;\n  font-weight: 300; }\n\n.style_enableRow__3T00O {\n  cursor: pointer; }\n\n.style_enableRow__3T00O:hover {\n  border-left: 6px solid #f06a5d;\n  font-weight: 500; }\n\n.style_enableRow__3T00O:hover .style_enabledRowName__GqEsb {\n  color: #F06A5D; }\n\n.style_disableRow__Vji9G {\n  color: #c5c5c5;\n  cursor: not-allowed; }\n\n.style_enabledRowName__GqEsb {\n  color: #252f6a;\n  font-weight: 600; }\n", ""]);
+exports.push([module.i, ".style_deployment-table__1yDju {\n  width: 100%;\n  min-width: 880px;\n  max-height: 400px;\n  background-color: #ffffff;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  text-align: center; }\n\n.style_table-header__3hSWm {\n  width: 100%;\n  height: 50px;\n  border-bottom: 2px solid #e0e0e0;\n  background-color: #ffffff;\n  box-sizing: border-box;\n  text-align: left; }\n\n.style_table-header__3hSWm span {\n  color: #252f6a;\n  font-size: 10px;\n  font-weight: 500; }\n\n.style_cell__222Qx, .style_name__1EwBE, .style_enabledRowName__GqEsb, .style_status__VozdF, .style_date-created__3Slmr, .style_model-name__3hTKu, .style_model-runtime__3DXae {\n  text-align: left;\n  height: 100%;\n  padding-left: 3px;\n  padding-right: 3px;\n  line-height: 50px; }\n\n.style_name__1EwBE, .style_enabledRowName__GqEsb {\n  width: 27%;\n  padding-left: 15px; }\n\n.style_status__VozdF {\n  width: 14%; }\n\n.style_date-created__3Slmr {\n  width: 17%; }\n\n.style_model-name__3hTKu {\n  width: 27%; }\n\n.style_model-runtime__3DXae {\n  width: 13%; }\n\n.style_table-row__3xMZK, .style_enableRow__3T00O, .style_disableRow__Vji9G {\n  box-sizing: border-box;\n  border-bottom: 1px solid #e0e0e0;\n  width: 100%;\n  height: 50px;\n  text-align: left;\n  color: #777677;\n  font-size: 12px;\n  font-weight: 300; }\n\n.style_enableRow__3T00O {\n  cursor: pointer; }\n\n.style_enableRow__3T00O:hover {\n  border-left: 6px solid #f06a5d;\n  font-weight: 500; }\n\n.style_enableRow__3T00O:hover .style_enabledRowName__GqEsb {\n  color: #F06A5D; }\n\n.style_disableRow__Vji9G {\n  color: #c5c5c5;\n  cursor: not-allowed; }\n\n.style_enabledRowName__GqEsb {\n  color: #252f6a;\n  font-weight: 600; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -42225,8 +42221,6 @@ exports.locals = {
 	"dateCreated": "style_date-created__3Slmr",
 	"model-name": "style_model-name__3hTKu",
 	"modelName": "style_model-name__3hTKu",
-	"model-author": "style_model-author__2aBaE",
-	"modelAuthor": "style_model-author__2aBaE",
 	"model-runtime": "style_model-runtime__3DXae",
 	"modelRuntime": "style_model-runtime__3DXae",
 	"table-row": "style_table-row__3xMZK",
